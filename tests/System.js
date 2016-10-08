@@ -5,9 +5,9 @@ chai = require('chai');
 expect = chai.expect;
 validator = require('../lib/validator.js');
 validate = validator({
-  System: fs.readFileSync(__dirname + '/../examples/system.ft').toString('utf8')
+  System: fs.readFileSync(__dirname + '/../examples/System.ft').toString('utf8')
 });
-describe('basic', function(){
+describe('System', function(){
   it('Type Not Exists Test', function(){
     return expect(validate("TypeNotExists", "Some Custom String")).to.not.equal(true);
   });

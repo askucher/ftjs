@@ -77,9 +77,17 @@ module.exports = (source)->
                return yes if result?
                return "#{obj} does not match to regular expression #{type.body}"
            case \ExportType
-               result = obj-type is type.body
-               return yes if result is yes
-               return "Type '#{obj-type} isnt #{type.body}'"
+               parts = type.body.split(\.)
+               switch
+                case parts.length isnt 2
+                   return "Export Type #{type.body} is not valid"
+                case parts.0 is \Global
+                   result = obj-type is type.body
+                   return yes if result is yes
+                   return "Type '#{obj-type} isnt #{type.body}'"
+                else 
+                   validate type.body, obj
+                   
            case \ArrayType
                return "Object Type is not And ArrayType" if obj-type isnt \ArrayType
                array-type = find-type scope, type.body
@@ -88,6 +96,7 @@ module.exports = (source)->
                      return array-type
                    else
                      items = obj.map(-> validate-expression scope, array-type, it)
+                     
                      return yes if items.length is items.filter(-> it is yes).length 
                      return items.filter(-> it is no).join("; ")
                       

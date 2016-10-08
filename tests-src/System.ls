@@ -4,9 +4,9 @@ expect = chai.expect
 validator = require \../lib/validator.js
 
 validate = validator do
-     System: fs.read-file-sync __dirname + \/../examples/system.ft .to-string \utf8 
+     System: fs.read-file-sync __dirname + \/../examples/System.ft .to-string \utf8
 
-describe \basic, (...)->
+describe \System, (...)->
   
   it 'Type Not Exists Test', (...)->
     expect(validate("TypeNotExists", "Some Custom String")).to.not.equal(yes)

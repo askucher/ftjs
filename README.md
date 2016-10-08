@@ -2,9 +2,6 @@
 Runtime Type Check System For Javascript
 
 
-
-
-
 Install
 ```bash
 npm install flyber-types
@@ -72,9 +69,11 @@ Use
 ```javascript
    
    var types = require("flyber-types");
+   var fs = require("fs");
    
    var validate = types({
-      System: fs.readFileSync("./examples/system.ft").toString("utf8")
+      System: fs.readFileSync("./examples/System.ft").toString("utf8"),
+      Export: fs.readFileSync("./examples/Export.ft").toString("utf8")
    });
    
    var user = {
