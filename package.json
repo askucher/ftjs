@@ -2,7 +2,7 @@
   "name": "flyber-types",
   "version": "0.0.1",
   "description": "Type System for Javascript Objects",
-  "main": "index.js",
+  "main": "lib/validator.js",
   "dependencies": {
     "prelude-ls": "^1.1.2"
   },

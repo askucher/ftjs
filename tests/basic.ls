@@ -1,6 +1,7 @@
 fs = require \fs
-typedef = fs.read-file-sync './types/system.hs' .to-string \utf8
-validator = require \./validator.js
+validator = require \../lib/validator.js
+typedef = fs.read-file-sync __dirname + '/../examples/system.ft' .to-string \utf8
+
 validate = validator typedef 
 user = 
   email          : 'a.stegno@gmail.com'
