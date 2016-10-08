@@ -72,8 +72,7 @@ Use
    var fs = require("fs");
    
    var validate = types({
-      System: fs.readFileSync("./examples/System.ft").toString("utf8"),
-      Export: fs.readFileSync("./examples/Export.ft").toString("utf8")
+      System: fs.readFileSync("./examples/System.ft").toString("utf8")
    });
    
    var user = {
