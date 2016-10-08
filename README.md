@@ -62,8 +62,8 @@ tags           : [String]
 ```
 
 Use 
-```
-   validate = require \types 
+```javascript
+   var validate = require \types 
    system = fs.readFileSync("./system.types")
    validate = types(system)
    user = {
