@@ -2,7 +2,7 @@
 
 String         : /.?/
 
-Integer        : Global.Integer
+Integer        : Global.Number
 
 Int            : Integer
 
@@ -10,7 +10,7 @@ Boolean        : Global.Boolean
 
 Bool           : Boolean
 
-Double         : Global.Double
+Double         : Global.Number
 
 Numeric        : Double | Integer
 

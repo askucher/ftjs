@@ -10,10 +10,13 @@ describe('basic', function(){
   it('String Test', function(){
     return expect(validate("String", "Some Custom String")).to.equal(true);
   });
+  it('Integer Test', function(){
+    return expect(validate("Global.Number", 1)).to.equal(true);
+  });
   it('Navative String Test', function(){
     return expect(validate("String", 1)).to.not.equal(true);
   });
-  return it('Should Return True', function(){
+  return it('Object Test', function(){
     var user;
     user = {
       email: 'a.stegno@gmail.com',

@@ -10,9 +10,12 @@ validate = validator typedef
 describe \basic, (...)->
   it 'String Test', (...)->
     expect(validate("String", "Some Custom String")).to.equal(yes)
+  it 'Integer Test', (...)->
+    expect(validate("Global.Number", 1)).to.equal(yes)
+  
   it 'Navative String Test', (...)->
     expect(validate("String", 1)).to.not.equal(yes)
-  it 'Should Return True', (...)->
+  it 'Object Test', (...)->
     user = 
       email          : \a.stegno@gmail.com
       picture        : \http://some
