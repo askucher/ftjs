@@ -1,5 +1,5 @@
 #Flyber Types
-Type System For Javascript
+Runtime Type Check System For Javascript
 
 
 
