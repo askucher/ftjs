@@ -7,8 +7,11 @@ typedef = fs.read-file-sync __dirname + '/../examples/system.ft' .to-string \utf
 
 validate = validator typedef 
 
-
-describe \UserModelCheck, (...)->
+describe \basic, (...)->
+  it 'String Test', (...)->
+    expect(validate("String", "Some Custom String")).to.equal(yes)
+  it 'Navative String Test', (...)->
+    expect(validate("String", 1)).to.not.equal(yes)
   it 'Should Return True', (...)->
     user = 
       email          : \a.stegno@gmail.com

@@ -6,7 +6,13 @@ expect = chai.expect;
 validator = require('../lib/validator.js');
 typedef = fs.readFileSync(__dirname + '/../examples/system.ft').toString('utf8');
 validate = validator(typedef);
-describe('UserModelCheck', function(){
+describe('basic', function(){
+  it('String Test', function(){
+    return expect(validate("String", "Some Custom String")).to.equal(true);
+  });
+  it('Navative String Test', function(){
+    return expect(validate("String", 1)).to.not.equal(true);
+  });
   return it('Should Return True', function(){
     var user;
     user = {
