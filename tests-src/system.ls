@@ -3,9 +3,9 @@ chai = require \chai
 expect = chai.expect
 validator = require \../lib/validator.js
 
-typedef = fs.read-file-sync __dirname + \/../examples/system.ft .to-string \utf8
+system = fs.read-file-sync __dirname + \/../examples/system.ft .to-string \utf8
 
-validate = validator typedef 
+validate = validator system 
 
 describe \basic, (...)->
   it 'String Test', (...)->

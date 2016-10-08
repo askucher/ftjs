@@ -66,9 +66,13 @@ tags           : [String]
 
 Use 
 ```javascript
-   var types = require("flyber-types") 
-   var system = fs.readFileSync("./system.types")
-   var validate = types(system)
+   
+   var types = require("flyber-types");
+   
+   var system = fs.readFileSync("./examples/system.ft").toString("utf8");
+   
+   var validate = types(system);
+   
    var user = {
       email: 'a.stegno@gmail.com',
       picture: 'http://some',
@@ -78,5 +82,6 @@ Use
       bio: 'Ho',
       tags: ["user"]
    };
+   
    validate("User", user); //true
 ```
