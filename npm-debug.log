@@ -1,0 +1,110 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/versions/node/v4.5.0/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/versions/node/v4.5.0/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@2.15.9
+3 info using node@v4.5.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/ubuntu/workspace',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/ubuntu/.npm/flyber-types/0.1.14/package.tgz not in flight; packing
+9 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+10 verbose tar pack [ '/home/ubuntu/.npm/flyber-types/0.1.14/package.tgz',
+10 verbose tar pack   '/home/ubuntu/workspace' ]
+11 verbose tarball /home/ubuntu/.npm/flyber-types/0.1.14/package.tgz
+12 verbose folder /home/ubuntu/workspace
+13 info prepublish flyber-types@0.1.14
+14 verbose addLocalTarball adding from inside cache /home/ubuntu/.npm/flyber-types/0.1.14/package.tgz
+15 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+16 silly cache afterAdd flyber-types@0.1.14
+17 verbose afterAdd /home/ubuntu/.npm/flyber-types/0.1.14/package/package.json not in flight; writing
+18 verbose correctMkdir /home/ubuntu/.npm correctMkdir not in flight; initializing
+19 verbose afterAdd /home/ubuntu/.npm/flyber-types/0.1.14/package/package.json written
+20 silly publish { devDependencies: { chai: '^3.5.0' },
+20 silly publish   dependencies: { 'prelude-ls': '^1.1.2' },
+20 silly publish   main: 'lib/validator.js',
+20 silly publish   description: 'Type System for Javascript Objects',
+20 silly publish   subversion: 14,
+20 silly publish   uperversion: '0.1',
+20 silly publish   version: '0.1.14',
+20 silly publish   homepage: 'https://github.com/askucher/types#readme',
+20 silly publish   bugs: { url: 'https://github.com/askucher/types/issues' },
+20 silly publish   license: 'ISC',
+20 silly publish   author: { name: 'Flyber Inc' },
+20 silly publish   keywords: [ 'types', 'js' ],
+20 silly publish   repository:
+20 silly publish    { type: 'git',
+20 silly publish      url: 'git+ssh://git@github.com/askucher/types.git' },
+20 silly publish   scripts: { test: 'mocha tests' },
+20 silly publish   name: 'flyber-types',
+20 silly publish   readme: '#Flyber Types\nRuntime Type Check System For Javascript\n\n\n\n\n\nInstall\n```bash\nnpm install flyber-types\n```\n\nType Definition Example (\'./examples/system.ft\')\n```javascript\n#Simple Types\n\nString         : /.?/\n\nInteger        : Global.Integer\n\nInt            : Integer\n\nBoolean        : Global.Boolean\n\nBool           : Boolean\n\nDouble         : Global.Double\n\nNumeric        : Double | Integer\n\nNull           : Global.Null\n\nUndefined      : Global.Undefined\n\nEmail          : /^[-a-z0-9~!$%^&*_=+}{\\\'?]+(\\.[-a-z0-9~!$%^&*_=+}{\\\'?]+)*@([a-z0-9_][-a-z0-9_]*(\\.[-a-z0-9_]+)*\\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]{1,5})?$/i\n\nStrings        : [String]\n\n#Type Extensions\n\nString...\nMin min        : /^.{#{min},}$/\nMax max        : /^.{,#{max}}$/\nRange min max  : /^.{#{min},#{max}}$/\n\nInteger...\nMin min        : @ >= min\nMax max        : @ <= max\n\n\n#Enums\n\nStatus         : "active" | "inactive"\n\nMissing        : Null | Undefined\n\n\n#Complex Types\n\nUser\n------------\nemail          : Email\npicture        : String\nfirstname      : String Range(5,20)\nlastname       : String Min(5) Max(20)\nstatus         : Status\nbio            : String | Missing\ntags           : [String]\n```\n\nUse \n```javascript\n   \n   var types = require("flyber-types");\n   \n   var validate = types({\n      System: fs.readFileSync("./examples/system.ft").toString("utf8")\n   });\n   \n   var user = {\n      email: \'a.stegno@gmail.com\',\n      picture: \'http://some-website.com/picture.png\',\n      firstname: \'Andrey\',\n      lastname: \'Test\',\n      status: \'active\',\n      bio: \'Ho\',\n      tags: ["user"]\n   };\n   \n   validate("System.User", user); //true\n```\n\n![Flyber](http://res.cloudinary.com/nixar-work/image/upload/v1473975258/13268115_880281065449309_626424912755329334_o.jpg)\n',
+20 silly publish   readmeFilename: 'README.md',
+20 silly publish   gitHead: '06b6dde432cf569ec2222b6ffdc949295c66af69',
+20 silly publish   _id: 'flyber-types@0.1.14',
+20 silly publish   _shasum: '325ff8b7690dc1b9bb0e80cc33a616f0c898d4d2',
+20 silly publish   _from: '.' }
+21 verbose getPublishConfig undefined
+22 silly mapToRegistry name flyber-types
+23 silly mapToRegistry using default registry
+24 silly mapToRegistry registry https://registry.npmjs.org/
+25 silly mapToRegistry data Result {
+25 silly mapToRegistry   raw: 'flyber-types',
+25 silly mapToRegistry   scope: null,
+25 silly mapToRegistry   name: 'flyber-types',
+25 silly mapToRegistry   rawSpec: '',
+25 silly mapToRegistry   spec: 'latest',
+25 silly mapToRegistry   type: 'tag' }
+26 silly mapToRegistry uri https://registry.npmjs.org/flyber-types
+27 verbose publish registryBase https://registry.npmjs.org/
+28 silly publish uploading /home/ubuntu/.npm/flyber-types/0.1.14/package.tgz
+29 verbose request uri https://registry.npmjs.org/flyber-types
+30 verbose request sending authorization for write operation
+31 info attempt registry request try #1 at 9:48:35 PM
+32 verbose request using bearer token for auth
+33 verbose request id b4ac6b6d9fece4bb
+34 http request PUT https://registry.npmjs.org/flyber-types
+35 http 403 https://registry.npmjs.org/flyber-types
+36 verbose headers { 'content-type': 'application/json',
+36 verbose headers   'cache-control': 'max-age=300',
+36 verbose headers   'content-length': '96',
+36 verbose headers   'accept-ranges': 'bytes',
+36 verbose headers   date: 'Sat, 08 Oct 2016 21:48:36 GMT',
+36 verbose headers   via: '1.1 varnish',
+36 verbose headers   connection: 'keep-alive',
+36 verbose headers   'x-served-by': 'cache-lhr6333-LHR',
+36 verbose headers   'x-cache': 'MISS',
+36 verbose headers   'x-cache-hits': '0',
+36 verbose headers   'x-timer': 'S1475963315.715016,VS0,VE1178',
+36 verbose headers   vary: 'Accept-Encoding' }
+37 verbose request invalidating /home/ubuntu/.npm/registry.npmjs.org/flyber-types on PUT
+38 error publish Failed PUT 403
+39 verbose stack Error: "You cannot publish over the previously published version 0.1.14." : flyber-types
+39 verbose stack     at makeError (/home/ubuntu/.nvm/versions/node/v4.5.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+39 verbose stack     at CachingRegistryClient.<anonymous> (/home/ubuntu/.nvm/versions/node/v4.5.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+39 verbose stack     at Request._callback (/home/ubuntu/.nvm/versions/node/v4.5.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+39 verbose stack     at Request.self.callback (/home/ubuntu/.nvm/versions/node/v4.5.0/lib/node_modules/npm/node_modules/request/request.js:200:22)
+39 verbose stack     at emitTwo (events.js:87:13)
+39 verbose stack     at Request.emit (events.js:172:7)
+39 verbose stack     at Request.<anonymous> (/home/ubuntu/.nvm/versions/node/v4.5.0/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+39 verbose stack     at emitOne (events.js:82:20)
+39 verbose stack     at Request.emit (events.js:169:7)
+39 verbose stack     at IncomingMessage.<anonymous> (/home/ubuntu/.nvm/versions/node/v4.5.0/lib/node_modules/npm/node_modules/request/request.js:988:12)
+40 verbose statusCode 403
+41 verbose pkgid flyber-types
+42 verbose cwd /home/ubuntu/workspace
+43 error Linux 4.2.0-c9
+44 error argv "/home/ubuntu/.nvm/versions/node/v4.5.0/bin/node" "/home/ubuntu/.nvm/versions/node/v4.5.0/bin/npm" "publish"
+45 error node v4.5.0
+46 error npm  v2.15.9
+47 error code E403
+48 error "You cannot publish over the previously published version 0.1.14." : flyber-types
+49 error If you need help, you may report this error at:
+49 error     <https://github.com/npm/npm/issues>
+50 verbose exit [ 1, true ]
