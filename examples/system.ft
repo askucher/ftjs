@@ -39,6 +39,8 @@ Status         : "active" | "inactive"
 Missing        : Null | Undefined
 
 
+Strings        : [String]
+
 #Complex Types
 
 User

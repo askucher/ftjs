@@ -34,6 +34,8 @@ Undefined      : Global.Undefined
 
 Email          : /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
 
+Strings        : [String]
+
 #Type Extensions
 
 String...
@@ -71,9 +73,9 @@ Use
    
    var types = require("flyber-types");
    
-   var system = fs.readFileSync("./examples/system.ft").toString("utf8");
-   
-   var validate = types(system);
+   var validate = types({
+      System: fs.readFileSync("./examples/system.ft").toString("utf8")
+   });
    
    var user = {
       email: 'a.stegno@gmail.com',
