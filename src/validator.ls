@@ -65,8 +65,8 @@ module.exports = (source)->
         obj-type = get-type obj
         switch type.type
            case \Internal.Extended
-               #console.log type.extensions
-               #console.log type.basetype.extensions
+               console.log type.extensions
+               console.log type.basetype.extensions
                validate-value scope, obj, type.basetype
            case \String 
                result = type.body.index-of(obj) > -1
