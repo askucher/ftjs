@@ -7,7 +7,7 @@ Install
 npm install flyber-types
 ```
 
-Type Definition Example ('./examples/system.ft')
+Type Definition Example ('./examples/System.ft')
 ```javascript
 #Simple Types
 
