@@ -77,7 +77,7 @@ Use
    
    var user = {
       email: 'a.stegno@gmail.com',
-      picture: 'http://some',
+      picture: 'http://some-website.com/picture.png',
       firstname: 'Andrey',
       lastname: 'Test',
       status: 'active',
