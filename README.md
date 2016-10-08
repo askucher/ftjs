@@ -2,7 +2,7 @@
 
 Install
 ```bash
-npm install types
+npm install flyber-types
 ```
 
 Type Definition Example ('./system.types')
@@ -63,10 +63,10 @@ tags           : [String]
 
 Use 
 ```javascript
-   var validate = require \types 
-   system = fs.readFileSync("./system.types")
-   validate = types(system)
-   user = {
+   var types = require("flyber-types") 
+   var system = fs.readFileSync("./system.types")
+   var validate = types(system)
+   var user = {
       email: 'a.stegno@gmail.com',
       picture: 'http://some',
       firstname: 'Andrey',
