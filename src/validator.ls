@@ -33,6 +33,7 @@ module.exports = (source)->
     
     find-type = (scope, typename)->
        bundle_o = modules[scope]
+       return bundle_o if typeof! bundle_o is \String
        return "Scope '#{scope}' not found" if not bundle_o?
        type = bundle_o[typename]
        return "Type '#{typename}' is not found in scope '#{scope}'" if not type?
@@ -185,6 +186,7 @@ module.exports = (source)->
       scope = pair.0
       name = pair.1
       type = find-type scope, name
+      return type if typeof! type is \String 
       validate-type scope, type, obj
     validate
       

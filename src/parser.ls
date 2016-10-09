@@ -4,20 +4,20 @@ p =
   xs.slice 1
 module.exports = do
     pattern =  
-     // 
+     //^
      (#.+)
-     | (([A-Z][a-zA-Z0-9]+)(\s[a-z][a-zA-Z0-9]+)+\s+:\s+(.+))        # Function
-     | (([A-Z][a-zA-Z0-9]+)\s+:\s+(.+))                              # Type
-     | (([a-z][a-zA-Z0-9]+)\s+\:\s+(.+))                             # Field
-     | (-{3,})                                                       # FieldStart
-     | (([A-Z][a-zA-Z0-9]+)\.{3})                                    # TypeExtension
-     | (([A-Z][a-zA-Z0-9]+))                                         # ComplexType
+     | ^(([A-Z][a-zA-Z0-9]+)(\s[a-z][a-zA-Z0-9]+)+\s+:\s+(.+))$        # Function
+     | ^(([A-Z][a-zA-Z0-9]+)\s+:\s+(.+))$                              # Type
+     | ^(([a-z][a-zA-Z0-9]+)\s+\:\s+(.+))$                             # Field
+     | ^(-{3,})$                                                       # FieldStart
+     | ^(([A-Z][a-zA-Z0-9]+)\.{3})$                                    # TypeExtension
+     | ^(([A-Z][a-zA-Z0-9]+))$                                         # ComplexType
      //
     
     function-params = (str)->
       str.match(/[A-Z][a-zA-Z0-9]+\s([^:]+)/).1.trim!.split(/\s+/)
     body-pattern =
-     // 
+     //
      (\/.+)                                                          # RegularExpression
      | ([^\|]+\|.+)                                                  # Discrimination  
      | .+([A-Z][a-zA-Z0-9]+\([^(]+\))                                # InvokeFunction
@@ -47,7 +47,7 @@ module.exports = do
       | input.7? => type: \Integer , body: input.0
       | input.8? => type: \ExportType , body: input.0
       | input.9? => type: \Type , body: input.0
-      | _ => \Error
+      | _ => type: \Error
      res.origin = input.0
      res
     
@@ -63,23 +63,31 @@ module.exports = do
       | input.12? => type: \FieldStart
       | input.13? => type: \TypeExtension , name: input.14
       | input.15? => type: \ComplexType , name: input.15
-      | _ => \Error
+      | _ => type: \Error
      res.origin = input.0
      [res]
     
     naming = (input)->
-      return ["Naming error: #{typeof! input} is not supported"] if typeof! input isnt \Array
+      return input if typeof! input isnt \Array
       return [] if input.length is 0
-      (tokenize input.0) ++ (naming p.tail input)
+      tail = p.tail input
+      (tokenize input.0) ++ (naming tail)
      
     
     read = (input)->
        return read(input.to-string(\utf8)) if typeof! input is \Uint8Array
        return read(input.split(\\n)) if typeof! input is \String 
-       return ["Reading error: #{typeof! input} is not supported"] if typeof! input isnt \Array
+       return "Reading error: #{typeof! input} is not supported" if typeof! input isnt \Array
        return [] if input.length is 0
-       [input.0.match(pattern)] ++ (read p.tail input)
-    
+       result = 
+          | input.0.length is 0 => ""
+          | _ => input.0.match(pattern)
+       return "Syntax Error: Unexpected Token on '#{input.0}'" if typeof! result is \Null
+       next = read p.tail input
+       return next if typeof! next is \String 
+       return [result] ++ next
+          
+       
     checkers =
       * curr: \Field 
         after: [\FieldStart, \Field]
@@ -92,8 +100,10 @@ module.exports = do
         otherwise: "Error: Function '----' can go only after Type... extension or Previous Function"
     
     parse = (registry, lines)-->
+     return lines if typeof! lines isnt \Array
      return registry if lines.length is 0
      curr = lines.0
+     return curr if typeof! curr is \String
      last = registry[registry.length - 1] ? {} 
      for checker in checkers 
       if checker.curr is curr.type and checker.after.index-of(last.type) is -1
@@ -102,6 +112,7 @@ module.exports = do
      switch curr.type  
       case \ComplexType
        curr.fields = []
+       #curr.type = \FieldStart
        registry.push curr
       case \FieldStart
        last.type = \FieldStart
@@ -112,11 +123,14 @@ module.exports = do
        registry.push curr
       case \Function
        last.functions.push curr
+      
       case \Type
        registry.push curr
+      
       return parse registry, p.tail(lines)
       
     beautify = (items)->
+      return items if typeof! items isnt \Array
       types = {}
       register = (item)->
         get-type = ->
@@ -137,7 +151,7 @@ module.exports = do
       types
     compile = (example)->
      example |> read 
-             |> naming 
+             |> naming
              |> parse []
              |> beautify
     transform-value-field = (field)->
@@ -186,6 +200,5 @@ module.exports = do
     validate: validate
     register: register
     compile: compile
-    
     
     
