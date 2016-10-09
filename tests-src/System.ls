@@ -71,7 +71,7 @@ describe \System, (...)->
       email          : \a.stegno@gmail.com
       picture        : \http://some
       firstname      : \Andrey
-      lastname       : \Test
+      lastname       : \Jobs
       status         : \active
       bio            : \Ho
       tags           : [\user]

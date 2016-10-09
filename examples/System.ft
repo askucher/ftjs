@@ -24,7 +24,7 @@ Email          : /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z
 
 String...
 Min min        : /^.{#{min},}$/
-Max max        : /^.{,#{max}}$/
+Max max        : /^.{0,#{max}}$/
 Range min max  : /^.{#{min},#{max}}$/
 
 Integer...
@@ -47,8 +47,8 @@ User
 ------------
 email          : Email
 picture        : String
-firstname      : String Range(5,20)
-lastname       : String Min(5) Max(20)
+firstname      : String Range(3,20)
+lastname       : String Min(3) Max(20)
 status         : Status
 bio            : String | Missing
 tags           : [String]

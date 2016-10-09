@@ -65,6 +65,21 @@ module.exports = (source)->
        parsed = expression.match /([A-Z][a-z0-9]+)\(([^\)]+)\)/
        name: parsed?1
        params: parsed?2?split?(",") ? []
+    invoke-regular-expression = (body, params, obj)->
+        return "Object should have type Global.String" if typeof! obj isnt \String
+        state =
+            str: body.body
+        replace = (param)->
+           find = new RegExp("#\{#{param.name}\}")
+           state.str = state.str.replace(find, param.value)
+        params.for-each replace
+        result = obj.match compile(state.str)
+        return yes if result?
+        return "'#{obj}' does not match to #{state.str}"
+    invoke-function = (func, params, obj)->
+        switch func.body.type 
+          case "RegularExpression" then invoke-regular-expression func.body, params, obj 
+          else "Function #{func.body.type} is not supported"
     validate-value = (scope, obj, type)-->
         obj-type = get-type obj
         switch type.type
@@ -77,8 +92,13 @@ module.exports = (source)->
                    func = type.basetype.extensions.filter(-> it.name is invoke.name).0
                    if not func?
                      return "Function #{invoke.name} is not found"
-                   console.log func
-                   yes
+                   applied-params = []
+                   apply-param = (param, index)->
+                       applied-params.push do 
+                           name: param 
+                           value: invoke.params[index]
+                   func.params.for-each apply-param
+                   invoke-function func, applied-params, obj
                    
                result = type.extensions.map(parse-invoke).map(apply)
                return yes if result.filter(-> it is yes).length is result.length
