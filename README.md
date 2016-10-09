@@ -1,6 +1,8 @@
 #Flyber Types
 Runtime Type Check System For Javascript
 
+![Flyber](http://res.cloudinary.com/nixar-work/image/upload/v1473975258/13268115_880281065449309_626424912755329334_o.jpg)
+
   [![NPM Version][npm-image]][npm-url]
   [![Linux Build][travis-image]][travis-url]
   [![Windows Build][appveyor-image]][appveyor-url]
@@ -92,7 +94,7 @@ Use
    validate("System.User", user); //true
 ```
 
-![Flyber](http://res.cloudinary.com/nixar-work/image/upload/v1473975258/13268115_880281065449309_626424912755329334_o.jpg)
+
 
 [npm-image]: https://img.shields.io/npm/v/express.svg
 [npm-url]: https://npmjs.org/package/flyber-types
