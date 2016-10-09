@@ -11,6 +11,8 @@ p =
       xs.slice 1
     concat: (xss) ->
       [].concat.apply [], xss
+    filter: (f, xs)-->
+        xs.filter(f)
 compile = (str)->
   mask = str.match("/(.+)/([ig]?)")
   new RegExp(mask.1, mask.2)
@@ -188,7 +190,7 @@ module.exports = (source)->
       return type if typeof! type is \String 
       validate-type scope, type, obj
     validate.syntax-check = ->
-        result = modules |> p.obj-to-pairs |> p.filter (typeof! it.1 is \String) |> p.map (-> "'#{it.0}': { #{it.1} }")
+        result = modules |> p.obj-to-pairs |> p.filter (-> typeof! it.1 is \String) |> p.map (-> "'#{it.0}': { #{it.1} }")
         return yes if result.length is 0
         return result.join("; ")
     validate
