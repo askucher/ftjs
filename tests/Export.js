@@ -9,6 +9,10 @@ validate = validator({
   Export: fs.readFileSync(__dirname + '/../examples/Export.ft')
 });
 describe('Export', function(){
+  it('Modules Test', function(){
+    expect(validate.modules.System).to.have.property('String');
+    return expect(validate.modules.Export).to.have.property('String');
+  });
   it('Export Integer Test', function(){
     expect(validate("Export.Integer", 1)).to.equal(true);
     return expect(validate("Export.Integer", "1")).to.not.equal(true);

@@ -189,6 +189,7 @@ module.exports = (source)->
       type = find-type scope, name
       return type if typeof! type is \String 
       validate-type scope, type, obj
+    validate.modules = modules
     validate.syntax-check = ->
         result = modules |> p.obj-to-pairs |> p.filter (-> typeof! it.1 is \String) |> p.map (-> "'#{it.0}': { #{it.1} }")
         return yes if result.length is 0

@@ -12,6 +12,10 @@ validate = validator do
 
 describe \Export, (...)->
   
+  it 'Modules Test', (...)->
+    expect(validate.modules.System).to.have.property('String')
+    expect(validate.modules.Export).to.have.property('String')
+  
   it 'Export Integer Test', (...)->
     expect(validate("Export.Integer", 1)).to.equal(yes)
     expect(validate("Export.Integer", "1")).to.not.equal(yes)
