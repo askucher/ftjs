@@ -75,6 +75,7 @@ describe('System', function(){
       lastname: 'Jobs',
       status: 'active',
       bio: 'Ho',
+      age: 19,
       tags: ['user']
     };
     return expect(validate("System.User", user)).to.equal(true);

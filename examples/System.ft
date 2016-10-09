@@ -29,7 +29,7 @@ Range min max  : /^.{#{min},#{max}}$/
 
 Integer...
 Min min        : @ >= min
-Max max        : @ <= max
+Max max        : @ <= max 
 
 
 #Enums
@@ -50,5 +50,6 @@ picture        : String
 firstname      : String Range(3,20)
 lastname       : String Min(3) Max(20)
 status         : Status
+age            : Integer Min(18)
 bio            : String | Missing
 tags           : [String]

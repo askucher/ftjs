@@ -71,6 +71,7 @@ module.exports = do
      
     
     read = (input)->
+       return read(input.to-string(\utf8)) if typeof! input is \Buffer
        return read(input.split(\\n)) if typeof! input is \String 
        return ["Reading error: #{typeof! input} is not supported"] if typeof! input isnt \Array
        return [] if input.length is 0

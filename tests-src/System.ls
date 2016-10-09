@@ -6,6 +6,7 @@ validator = require \../lib/validator.js
 validate = validator do
      System: fs.read-file-sync __dirname + \/../examples/System.ft .to-string \utf8
 
+
 describe \System, (...)->
   
   it 'Type Not Exists Test', (...)->
@@ -74,5 +75,6 @@ describe \System, (...)->
       lastname       : \Jobs
       status         : \active
       bio            : \Ho
+      age            : 19
       tags           : [\user]
     expect(validate("System.User", user)).to.equal(yes)

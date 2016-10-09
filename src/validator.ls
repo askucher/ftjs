@@ -1,4 +1,4 @@
-registry = require \./registry.js
+parser = require \./parser.js
 p = require \prelude-ls
 compile = (str)->
   mask = str.match("/(.+)/([ig]?)")
@@ -15,7 +15,7 @@ get-type = (obj)->
 module.exports = (source)->
     modules =
         source |> p.obj-to-pairs
-               |> p.map (-> [it.0, registry.compile it.1]) 
+               |> p.map (-> [it.0, parser.compile it.1]) 
                |> p.pairs-to-obj
     
     
@@ -76,9 +76,22 @@ module.exports = (source)->
         result = obj.match compile(state.str)
         return yes if result?
         return "'#{obj}' does not match to #{state.str}"
+    invoke-operation-with-value = (body, params, obj)->
+        state = 
+            func: null
+        return "Body expected started with 'this'. Actual value is '#{body.body.substr(0, 4)}' in '#{body.body}'" if body.body.substr(0, 4) isnt \this
+        try 
+          state.func = eval "test = function (#{params.map(-> it.name).join(',')}) { return #{body.body} }" 
+        catch err 
+          return "Syntax error in #{body.body} : #{err.message ? err}"
+        result = state.func.apply obj, params.map(-> it.value)
+        return yes if result is yes
+        params-str = params.map(-> "'#{it.name}' = '#{it.value}'").join(", ")
+        return "'#{obj}' does not pass the condition '#{body.body}' with params #{params-str}"
     invoke-function = (func, params, obj)->
-        switch func.body.type 
+        switch func.body.type
           case "RegularExpression" then invoke-regular-expression func.body, params, obj 
+          case "OperationWithValue" then invoke-operation-with-value func.body, params, obj
           else "Function #{func.body.type} is not supported"
     validate-value = (scope, obj, type)-->
         obj-type = get-type obj
