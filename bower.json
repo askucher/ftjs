@@ -1,0 +1,21 @@
+{
+  "name": "flyber-types",
+  "description": "Type System for Javascript Objects",
+  "main": "browser/ft.js",
+  "authors": [
+    "Flyber Inc"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "types",
+    "js"
+  ],
+  "homepage": "https://github.com/askucher/types",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
