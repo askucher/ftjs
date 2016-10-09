@@ -1,4 +1,7 @@
-p = require \prelude-ls
+p = 
+ tail: (xs) ->
+  return void unless xs.length
+  xs.slice 1
 module.exports = do
     pattern =  
      // 

@@ -1,5 +1,16 @@
 parser = require \./parser.js
-p = require \prelude-ls
+p = 
+    obj-to-pairs:  (object) ->
+      [[key, value] for key, value of object]
+    pairs-to-obj: (object) ->
+      {[x.0, x.1] for x in object}
+    map: (f, xs) -->
+      [f x for x in xs]
+    tail: (xs) ->
+      return void unless xs.length
+      xs.slice 1
+    concat: (xss) ->
+      [].concat.apply [], xss
 compile = (str)->
   mask = str.match("/(.+)/([ig]?)")
   new RegExp(mask.1, mask.2)
