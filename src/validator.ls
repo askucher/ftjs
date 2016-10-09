@@ -26,14 +26,14 @@ get-type = (obj)->
      case \Number then \Global.Number
      case \Array then \ArrayType
 module.exports = (source)->
-    modules =
+    registry =
         source |> p.obj-to-pairs
                |> p.map (-> [it.0, parser.compile it.1]) 
                |> p.pairs-to-obj
     
     
     find-type = (scope, typename)->
-       bundle_o = modules[scope]
+       bundle_o = registry[scope]
        return bundle_o if typeof! bundle_o is \String
        return "Scope '#{scope}' not found" if not bundle_o?
        type = bundle_o[typename]
@@ -189,9 +189,9 @@ module.exports = (source)->
       type = find-type scope, name
       return type if typeof! type is \String 
       validate-type scope, type, obj
-    validate.modules = modules
+    validate.registry = registry
     validate.syntax-check = ->
-        result = modules |> p.obj-to-pairs |> p.filter (-> typeof! it.1 is \String) |> p.map (-> "'#{it.0}': { #{it.1} }")
+        result = registry |> p.obj-to-pairs |> p.filter (-> typeof! it.1 is \String) |> p.map (-> "'#{it.0}': { #{it.1} }")
         return yes if result.length is 0
         return result.join("; ")
     validate
