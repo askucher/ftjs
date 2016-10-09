@@ -5,8 +5,8 @@ chai = require('chai');
 expect = chai.expect;
 validator = require('../lib/validator.js');
 validate = validator({
-  System: fs.readFileSync(__dirname + '/../examples/System.ft').toString('utf8'),
-  Export: fs.readFileSync(__dirname + '/../examples/Export.ft').toString('utf8')
+  System: fs.readFileSync(__dirname + '/../examples/System.ft'),
+  Export: fs.readFileSync(__dirname + '/../examples/Export.ft')
 });
 describe('Export', function(){
   it('Export Integer Test', function(){

@@ -3,9 +3,12 @@ chai = require \chai
 expect = chai.expect
 validator = require \../lib/validator.js
 
+
 validate = validator do
-     System: fs.read-file-sync __dirname + \/../examples/System.ft .to-string \utf8
-     Export: fs.read-file-sync __dirname + \/../examples/Export.ft .to-string \utf8
+     System: fs.read-file-sync __dirname + \/../examples/System.ft
+     Export: fs.read-file-sync __dirname + \/../examples/Export.ft
+
+
 
 describe \Export, (...)->
   
