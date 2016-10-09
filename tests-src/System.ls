@@ -78,3 +78,14 @@ describe \System, (...)->
       age            : 19
       tags           : [\user]
     expect(validate("System.User", user)).to.equal(yes)
+    
+    wrong-user = 
+      email          : \a.stegno@gmail.com
+      picture        : \http://some
+      firstname      : \Andrey
+      lastname       : \Jobs
+      status         : \active
+      bio            : \Ho
+      age            : 15
+      tags           : [\user]
+    expect(validate("System.User", wrong-user)).to.not.equal(yes)

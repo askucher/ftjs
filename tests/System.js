@@ -67,7 +67,7 @@ describe('System', function(){
     return expect(validate("System.Strings", ["test", "test", 1])).to.not.equal(true);
   });
   return it('Object Test', function(){
-    var user;
+    var user, wrongUser;
     user = {
       email: 'a.stegno@gmail.com',
       picture: 'http://some',
@@ -78,6 +78,17 @@ describe('System', function(){
       age: 19,
       tags: ['user']
     };
-    return expect(validate("System.User", user)).to.equal(true);
+    expect(validate("System.User", user)).to.equal(true);
+    wrongUser = {
+      email: 'a.stegno@gmail.com',
+      picture: 'http://some',
+      firstname: 'Andrey',
+      lastname: 'Jobs',
+      status: 'active',
+      bio: 'Ho',
+      age: 15,
+      tags: ['user']
+    };
+    return expect(validate("System.User", wrongUser)).to.not.equal(true);
   });
 });
