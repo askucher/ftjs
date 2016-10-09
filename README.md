@@ -10,7 +10,7 @@ Runtime Type Check System For Javascript
 
 Install
 ```bash
-npm install flyber-types
+npm install ftjs
 ```
 
 Type Definition Example ('./examples/System.ft')
