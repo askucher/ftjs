@@ -1,4 +1,4 @@
-#FT
+#FT.js
 Runtime Type Check System For Javascript
 
 ![Flyber](http://res.cloudinary.com/nixar-work/image/upload/v1473975258/13268115_880281065449309_626424912755329334_o.jpg)
@@ -74,7 +74,7 @@ tags           : [String]
 Use 
 ```javascript
    
-   var types = require("flyber-types");
+   var types = require("ftjs");
    var fs = require("fs");
    
    var validate = types({
