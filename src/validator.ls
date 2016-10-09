@@ -77,6 +77,7 @@ module.exports = (source)->
                    func = type.basetype.extensions.filter(-> it.name is invoke.name).0
                    if not func?
                      return "Function #{invoke.name} is not found"
+                   console.log func
                    yes
                    
                result = type.extensions.map(parse-invoke).map(apply)
