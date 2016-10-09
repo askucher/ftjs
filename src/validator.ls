@@ -61,13 +61,28 @@ module.exports = (source)->
         type.fields |> p.map validate
       return yes if result.filter(-> it is yes).length is result.length 
       return "{ " + result.filter(-> it isnt yes).join(", ") + " }"
+    parse-invoke = (expression)->
+       parsed = expression.match /([A-Z][a-z0-9]+)\(([^\)]+)\)/
+       name: parsed?1
+       params: parsed?2?split?(",") ? []
     validate-value = (scope, obj, type)-->
         obj-type = get-type obj
         switch type.type
            case \Internal.Extended
-               console.log type.extensions
-               console.log type.basetype.extensions
-               validate-value scope, obj, type.basetype
+               #console.log type.extensions
+               #console.log type.basetype.extensions.map(make-function)
+               result = validate-value scope, obj, type.basetype
+               return result if result isnt yes 
+               apply = (invoke)->
+                   func = type.basetype.extensions.filter(-> it.name is invoke.name).0
+                   if not func?
+                     return "Function #{invoke.name} is not found"
+                   yes
+                   
+               result = type.extensions.map(parse-invoke).map(apply)
+               return yes if result.filter(-> it is yes).length is result.length
+               return result.filter(-> it isnt yes).join("; ")
+                
            case \String 
                result = type.body.index-of(obj) > -1
                return yes if result is yes
