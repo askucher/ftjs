@@ -8,6 +8,9 @@ validate = validator({
   SyntaxError: fs.readFileSync(__dirname + '/../examples/SyntaxError.ft')
 });
 describe('SyntaxError', function(){
+  it('Syntax Check', function(){
+    return expect(validate.syntaxCheck()).to.not.equal(true);
+  });
   return it('Export Integer Test', function(){
     return expect(validate("SyntaxError.Integer", 1)).to.equal("Syntax Error: Unexpected Token on 'Integer     = Global.Number'");
   });

@@ -1,29 +1,29 @@
 {
-  "homepage": "https://github.com/askucher/types#readme",
-  "version": "0.1.33",
-  "uperversion": "0.1",
-  "subversion": 33,
-  "description": "Type System for Javascript Objects",
-  "main": "lib/validator.js",
-  "dependencies": {},
   "name": "flyber-types",
-  "scripts": {
-    "test": "mocha tests"
+  "dependencies": {},
+  "main": "lib/validator.js",
+  "description": "Type System for Javascript Objects",
+  "subversion": 34,
+  "uperversion": "0.1",
+  "version": "0.1.34",
+  "devDependencies": {
+    "chai": "^3.5.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/askucher/types.git"
+  "bugs": {
+    "url": "https://github.com/askucher/types/issues"
   },
+  "license": "ISC",
+  "author": "Flyber Inc",
   "keywords": [
     "types",
     "js"
   ],
-  "author": "Flyber Inc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/askucher/types/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/askucher/types.git"
   },
-  "devDependencies": {
-    "chai": "^3.5.0"
-  }
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "homepage": "https://github.com/askucher/types#readme"
 }
