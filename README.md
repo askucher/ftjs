@@ -14,7 +14,7 @@ npm install ftjs
 ```
 
 Type Definition Example ('./examples/System.ft')
-```javascript
+```fsharp
 #Simple Types
 
 String         : /.?/
