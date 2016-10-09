@@ -15,7 +15,7 @@ npm install ftjs
 
 Type Definition Example ('./examples/System.ft')
 ```ocaml
-#Simple_Types
+#SimpleTypes
 
 String         : /.?/
 
@@ -39,7 +39,7 @@ Email          : /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z
 
 Strings        : [String]
 
-#Type_Extensions
+#TypeExtensions
 
 String...
 Min min        : /^.{#{min},}$/
@@ -58,7 +58,7 @@ Status         : "active" | "inactive"
 Missing        : Null | Undefined
 
 
-#Complex_Types
+#ComplexTypes
 
 User
 ------------
