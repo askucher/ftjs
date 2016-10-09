@@ -15,7 +15,6 @@ describe \SyntaxError, (...)->
   it 'Syntax Check', (...)->
     expect(validate.syntax-check!).to.not.equal(yes)
   
-  
   it 'Export Integer Test', (...)->
     expect(validate("SyntaxError.Integer", 1)).to.equal("Syntax Error: Unexpected Token on 'Integer     = Global.Number'")
   
