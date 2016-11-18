@@ -1,6 +1,6 @@
 #Simple Types
 
-String         : /.?/
+String         : /.+/
 
 Integer        : Global.Number
 

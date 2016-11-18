@@ -5,3 +5,4 @@ Wrapper
 ------------
 user           : System.User
 key            : String
+tags           : [System.String]

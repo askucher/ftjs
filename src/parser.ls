@@ -20,13 +20,13 @@ module.exports = do
      //
      (\/.+)                                                          # RegularExpression
      | ([^\|]+\|.+)                                                  # Discrimination  
-     | .+([A-Z][a-zA-Z0-9]+\([^(]+\))                                # InvokeFunction
-     | (\[[A-Z][a-zA-Z0-9]+\])                                       # ArrayType
+     | .+([A-Z][_a-zA-Z0-9]+\([^(]+\))                               # InvokeFunction
+     | (\[[A-Z][_a-zA-Z0-9.]+\])                                     # ArrayType
      | (\@.+)                                                        # OperationWithValue
      | (\"[^"]+\")                                                   # String
      | (-?[0-9]+)                                                    # Integer
-     | ([A-Z][a-zA-Z0-9]+\.[A-Z][a-zA-Z0-9]+)                        # ExportType
-     | ([A-Z][a-zA-Z0-9]+)                                           # Type
+     | ([A-Z][_a-zA-Z0-9]+\.[A-Z][_a-zA-Z0-9]+)                      # ExportType
+     | ([A-Z][_a-zA-Z0-9]+)                                          # Type
      //
     
     read-discrimination = (str)->

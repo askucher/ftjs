@@ -38,14 +38,16 @@ describe('Export', function(){
     };
     wrapper = {
       user: user,
-      key: "Some String"
+      key: "Some String",
+      tags: ["user"]
     };
     expect(validate('Export.Wrapper', wrapper)).to.equal(true);
     wrongWrapper = {
       user: {
         wrong: "model"
       },
-      key: "Some String"
+      key: "Some String",
+      tags: ["user"]
     };
     return expect(validate('Export.Wrapper', wrongWrapper)).to.not.equal(true);
   });

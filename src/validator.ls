@@ -144,9 +144,10 @@ module.exports = (source)->
                return yes if result is yes
                return "'#{obj}' is not '#{type.body}'"
            case \RegularExpression
+               return "Type of #{obj} is #{typeof! obj} but expected a String" if typeof! obj isnt \String
                result = obj?match?(compile type.body) ? null
                return yes if result?
-               return "#{obj} does not match to regular expression #{type.body}"
+               return "'#{obj}' does not match to regular expression #{type.body}"
            case \ExportType
                parts = type.body.split(\.)
                switch
@@ -161,15 +162,25 @@ module.exports = (source)->
                    
            case \ArrayType
                return "Object Type is not And ArrayType" if obj-type isnt \ArrayType
-               array-type = find-type scope, type.body
-               switch typeof! array-type 
-                   case \String 
-                     return array-type
-                   else
-                     items = obj.map(-> validate-expression scope, array-type, it)
-                     
-                     return yes if items.length is items.filter(-> it is yes).length 
-                     return items.filter(-> it is no).join("; ")
+               
+                    
+               process-array-type = (scope, array-type)->
+                   switch typeof! array-type 
+                       case \String 
+                         return array-type
+                       else
+                         items = obj.map(-> validate-expression scope, array-type, it)
+                         
+                         return yes if items.length is items.filter(-> it is yes).length 
+                         return items.filter(-> it is no).join("; ")
+               
+               if type.body.index-of(\.) > -1
+                 parts  = type.body.split(\.)
+                 found = find-type parts.0, parts.1
+                 return process-array-type parts.0, found
+               else
+                 array-type = find-type scope, type.body
+                 return process-array-type scope, array-type
                       
            else 
                return type.type
