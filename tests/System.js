@@ -95,7 +95,7 @@ describe('System', function(){
     return expect(validate("System.User", wrongUser)).to.not.equal(true);
   });
   return it('Wrapper Test', function(){
-    var user, wrapper;
+    var user, wrapper, wrongWrapper;
     user = {
       _id: (function(){
         _: return "Identity";
@@ -113,6 +113,13 @@ describe('System', function(){
       user: user,
       key: "Some String"
     };
-    return expect(validate('System.Wrapper', wrapper)).to.equal(true);
+    expect(validate('System.Wrapper', wrapper)).to.equal(true);
+    wrongWrapper = {
+      user: {
+        wrong: "model"
+      },
+      key: "Some String"
+    };
+    return expect(validate('System.Wrapper', wrongWrapper)).to.not.equal(true);
   });
 });

@@ -106,3 +106,8 @@ describe \System, (...)->
       user: user
       key: "Some String"
     expect(validate(\System.Wrapper, wrapper)).to.equal(yes)
+    
+    wrong-wrapper =
+      user: { wrong: "model"}
+      key: "Some String"
+    expect(validate(\System.Wrapper, wrong-wrapper)).to.not.equal(yes)
