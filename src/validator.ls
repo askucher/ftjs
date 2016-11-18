@@ -31,7 +31,7 @@ module.exports = (source)->
                |> p.map (-> [it.0, parser.compile it.1]) 
                |> p.pairs-to-obj
     
-    console.log registry
+    #console.log registry.System.Wrapper.fields
     find-type = (scope, typename)->
        bundle_o = registry[scope]
        return bundle_o if typeof! bundle_o is \String
@@ -63,7 +63,10 @@ module.exports = (source)->
           else
            [type]
     validate-complex-type = (scope, type, obj)->
-      return "Type #{type.body} isnt Complex" if type.type isnt \Complex
+      current-type = 
+          | type.type isnt \Complex => find-type scope, type.body
+          | _ => type
+      return "{Type #{type.body} isnt complex}" if current-type.type isnt \Complex
       validate = (field)->
         result = validate-type scope, field.body, obj[field.name]
         switch typeof! result 
@@ -71,9 +74,8 @@ module.exports = (source)->
             return "'Field #{field.name}': { #result }"
           else
             result
-      #throw "type.fields isnt Array for type #{type.body}" if typeof! type.fields isnt \Array
       result = 
-        type.fields |> p.map validate
+        current-type.fields |> p.map validate
       return yes if result.filter(-> it is yes).length is result.length 
       return "{ " + result.filter(-> it isnt yes).join(", ") + " }"
     parse-invoke = (expression)->
