@@ -8,7 +8,7 @@ module.exports = do
      (#.+)
      | ^(([A-Z][a-zA-Z0-9]+)(\s[a-z][a-zA-Z0-9]+)+\s+:\s+(.+))$        # Function
      | ^(([A-Z][a-zA-Z0-9]+)\s+:\s+(.+))$                              # Type
-     | ^(([a-z][a-zA-Z0-9]+)\s+\:\s+(.+))$                             # Field
+     | ^(([a-z_][_a-zA-Z0-9]+)\s+\:\s+(.+))$                           # Field
      | ^(-{3,})$                                                       # FieldStart
      | ^(([A-Z][a-zA-Z0-9]+)\.{3})$                                    # TypeExtension
      | ^(([A-Z][a-zA-Z0-9]+))$                                         # ComplexType
