@@ -22,7 +22,7 @@ describe('Export', function(){
     return expect(validate("Export.String", 1)).to.not.equal(true);
   });
   return it('Wrapper Test', function(){
-    var user, wrapper, wrongWrapper;
+    var user, wrapper, wrongWrapper, wrongWrapper2;
     user = {
       _id: (function(){
         _: return "Identity";
@@ -39,6 +39,7 @@ describe('Export', function(){
     wrapper = {
       user: user,
       key: "Some String",
+      password: "abcd",
       tags: ["user"]
     };
     expect(validate('Export.Wrapper', wrapper)).to.equal(true);
@@ -47,8 +48,16 @@ describe('Export', function(){
         wrong: "model"
       },
       key: "Some String",
+      password: "abcd",
       tags: ["user"]
     };
-    return expect(validate('Export.Wrapper', wrongWrapper)).to.not.equal(true);
+    expect(validate('Export.Wrapper', wrongWrapper)).to.not.equal(true);
+    wrongWrapper2 = {
+      user: user,
+      key: "Some String",
+      password: "a",
+      tags: ["user"]
+    };
+    return expect(validate('Export.Wrapper', wrongWrapper2)).to.not.equal(true);
   });
 });

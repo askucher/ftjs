@@ -5,4 +5,5 @@ Wrapper
 ------------
 user           : System.User
 key            : String
+password       : System.String Range(3,5)
 tags           : [System.String]

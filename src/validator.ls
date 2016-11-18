@@ -43,10 +43,17 @@ module.exports = (source)->
          found =
                find-type scope, type.body
          get-expected-types scope, found
+    find-type-by-pair = (pair)->
+        items = pair.split(\.)
+        type: find-type items.0, items.1
+        scope: items.0
     lookup-invoke-function-type = (scope, type)->
+         
          new-type =
            type: \Internal.Extended
-           basetype: find-type scope, type.body.0
+           basetype: 
+               | type.body.0.index-of(\.) > -1 => find-type-by-pair(type.body.0).type
+               | _ => find-type scope, type.body.0
            extensions: type.body |> p.tail
          [new-type]
     lookup-discrimination-type = (scope, type)->
@@ -65,9 +72,8 @@ module.exports = (source)->
 
     validate-complex-type = (scope, type, obj)->
       if type.type isnt \Complex and type.body.index-of(\.) > -1
-          parts = type.body.split(\.)
-          next-type = find-type parts.0, parts.1
-          return validate-complex-type parts.0, next-type, obj
+          found = find-type-by-pair type.body
+          return validate-complex-type found.scope, found.type, obj
       current-type = 
           | type.type is \Complex => type
           | _ => find-type scope, type.body
@@ -175,9 +181,8 @@ module.exports = (source)->
                          return items.filter(-> it is no).join("; ")
                
                if type.body.index-of(\.) > -1
-                 parts  = type.body.split(\.)
-                 found = find-type parts.0, parts.1
-                 return process-array-type parts.0, found
+                 found = find-type-by-pair type.body
+                 return process-array-type found.scope, found.type
                else
                  array-type = find-type scope, type.body
                  return process-array-type scope, array-type

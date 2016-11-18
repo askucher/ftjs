@@ -38,13 +38,22 @@ describe \Export, (...)->
     wrapper =
       user: user
       key: "Some String"
+      password: "abcd"
       tags: ["user"]
     expect(validate(\Export.Wrapper, wrapper)).to.equal(yes)
     
     wrong-wrapper =
       user: { wrong: "model"}
       key: "Some String"
+      password: "abcd"
       tags: ["user"]
     expect(validate(\Export.Wrapper, wrong-wrapper)).to.not.equal(yes)
+    
+    wrong-wrapper2 =
+      user: user
+      key: "Some String"
+      password: "a"
+      tags: ["user"]
+    expect(validate(\Export.Wrapper, wrong-wrapper2)).to.not.equal(yes)
   
     
