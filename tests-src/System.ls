@@ -69,6 +69,7 @@ describe \System, (...)->
 
   it 'Object Test', (...)->
     user = 
+      _id:           : "Identity"
       email          : \a.stegno@gmail.com
       picture        : \http://some
       firstname      : \Andrey

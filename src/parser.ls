@@ -6,16 +6,16 @@ module.exports = do
     pattern =  
      //^
      (#.+)
-     | ^(([A-Z][a-zA-Z0-9]+)(\s[a-z][a-zA-Z0-9]+)+\s+:\s+(.+))$        # Function
-     | ^(([A-Z][a-zA-Z0-9]+)\s+:\s+(.+))$                              # Type
-     | ^(([a-z_][_a-zA-Z0-9]+)\s+\:\s+(.+))$                           # Field
-     | ^(-{3,})$                                                       # FieldStart
-     | ^(([A-Z][a-zA-Z0-9]+)\.{3})$                                    # TypeExtension
-     | ^(([A-Z][a-zA-Z0-9]+))$                                         # ComplexType
+     | ^(([A-Z][_a-zA-Z0-9]+)(\s[a-z][a-zA-Z0-9]+)+\s+:\s+(.+))$         # Function
+     | ^(([A-Z][_a-zA-Z0-9]+)\s+:\s+(.+))$                               # Type
+     | ^(([a-z_][_a-zA-Z0-9]+)\s+\:\s+(.+))$                             # Field
+     | ^(-{3,})$                                                         # FieldStart
+     | ^(([A-Z][_a-zA-Z0-9]+)\.{3})$                                     # TypeExtension
+     | ^(([A-Z][_a-zA-Z0-9]+))$                                          # ComplexType
      //
     
     function-params = (str)->
-      str.match(/[A-Z][a-zA-Z0-9]+\s([^:]+)/).1.trim!.split(/\s+/)
+      str.match(/[A-Z][_a-zA-Z0-9]+\s([^:]+)/).1.trim!.split(/\s+/)
     body-pattern =
      //
      (\/.+)                                                          # RegularExpression

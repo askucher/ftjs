@@ -45,6 +45,7 @@ Strings        : [String]
 
 User
 ------------
+_id            : String
 email          : Email
 picture        : String
 firstname      : String Range(3,20)

@@ -69,6 +69,9 @@ describe('System', function(){
   return it('Object Test', function(){
     var user, wrongUser;
     user = {
+      _id: (function(){
+        _: return "Identity";
+      }()),
       email: 'a.stegno@gmail.com',
       picture: 'http://some',
       firstname: 'Andrey',
