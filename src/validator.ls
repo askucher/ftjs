@@ -63,6 +63,7 @@ module.exports = (source)->
           else
            [type]
     validate-complex-type = (scope, type, obj)->
+      return "Type #{type.body} isnt Complex" if type.type isnt \Complex
       validate = (field)->
         result = validate-type scope, field.body, obj[field.name]
         switch typeof! result 
@@ -70,8 +71,7 @@ module.exports = (source)->
             return "'Field #{field.name}': { #result }"
           else
             result
-      console.log type
-      throw "type.fields isnt Array for type #{type.body}" if typeof! type.fields isnt \Array
+      #throw "type.fields isnt Array for type #{type.body}" if typeof! type.fields isnt \Array
       result = 
         type.fields |> p.map validate
       return yes if result.filter(-> it is yes).length is result.length 

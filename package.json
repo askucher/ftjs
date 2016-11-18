@@ -1,29 +1,29 @@
 {
-  "devDependencies": {
-    "chai": "^3.5.0"
-  },
-  "dependencies": {},
-  "main": "lib/validator.js",
-  "description": "Type System for Javascript Objects",
-  "subversion": 50,
-  "uperversion": "0.1",
-  "version": "0.1.50",
   "homepage": "https://github.com/askucher/ftjs#readme",
-  "bugs": {
-    "url": "https://github.com/askucher/ftjs/issues"
+  "version": "0.1.51",
+  "uperversion": "0.1",
+  "subversion": 51,
+  "description": "Type System for Javascript Objects",
+  "main": "lib/validator.js",
+  "dependencies": {},
+  "name": "ftjs",
+  "scripts": {
+    "test": "mocha tests"
   },
-  "license": "ISC",
-  "author": "Flyber Inc",
-  "keywords": [
-    "types",
-    "js"
-  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/askucher/ftjs.git"
   },
-  "scripts": {
-    "test": "mocha tests"
+  "keywords": [
+    "types",
+    "js"
+  ],
+  "author": "Flyber Inc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/askucher/ftjs/issues"
   },
-  "name": "ftjs"
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
 }

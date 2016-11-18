@@ -140,6 +140,7 @@ module.exports = do
           type = get-type!
           type.type = item.body.type
           type.body = item.body.body
+          
          case \TypeExtension
           type = get-type!
           type.extensions = item.functions
