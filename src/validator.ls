@@ -31,7 +31,7 @@ module.exports = (source)->
                |> p.map (-> [it.0, parser.compile it.1]) 
                |> p.pairs-to-obj
     
-    
+    console.log registry
     find-type = (scope, typename)->
        bundle_o = registry[scope]
        return bundle_o if typeof! bundle_o is \String
