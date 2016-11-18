@@ -70,6 +70,7 @@ module.exports = (source)->
             return "'Field #{field.name}': { #result }"
           else
             result
+      throw "type.fields isnt Array for type #{type.body}" if typeof! type.fields isnt \Array
       result = 
         type.fields |> p.map validate
       return yes if result.filter(-> it is yes).length is result.length 

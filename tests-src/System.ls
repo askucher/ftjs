@@ -90,3 +90,19 @@ describe \System, (...)->
       age            : 15
       tags           : [\user]
     expect(validate("System.User", wrong-user)).to.not.equal(yes)
+  it 'Wrapper Test', (...)->
+    user = 
+      _id:           : "Identity"
+      email          : \a.stegno@gmail.com
+      picture        : \http://some
+      firstname      : \Andrey
+      lastname       : \Jobs
+      status         : \active
+      bio            : \Ho
+      age            : 19
+      tags           : [\user]
+    
+    wrapper =
+      user: user
+      key: "Some String"
+    expect(validate(\System.Wrapper, wrapper)).to.equal(yes)

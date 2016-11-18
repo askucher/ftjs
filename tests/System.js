@@ -66,7 +66,7 @@ describe('System', function(){
     expect(validate("System.Strings", "invalid")).to.not.equal(true);
     return expect(validate("System.Strings", ["test", "test", 1])).to.not.equal(true);
   });
-  return it('Object Test', function(){
+  it('Object Test', function(){
     var user, wrongUser;
     user = {
       _id: (function(){
@@ -93,5 +93,26 @@ describe('System', function(){
       tags: ['user']
     };
     return expect(validate("System.User", wrongUser)).to.not.equal(true);
+  });
+  return it('Wrapper Test', function(){
+    var user, wrapper;
+    user = {
+      _id: (function(){
+        _: return "Identity";
+      }()),
+      email: 'a.stegno@gmail.com',
+      picture: 'http://some',
+      firstname: 'Andrey',
+      lastname: 'Jobs',
+      status: 'active',
+      bio: 'Ho',
+      age: 19,
+      tags: ['user']
+    };
+    wrapper = {
+      user: user,
+      key: "Some String"
+    };
+    return expect(validate('System.Wrapper', wrapper)).to.equal(true);
   });
 });

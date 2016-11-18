@@ -54,3 +54,8 @@ status         : Status
 age            : Integer Min(18)
 bio            : String | Missing
 tags           : [String]
+
+Wrapper
+------------
+user           : User
+key            : String
