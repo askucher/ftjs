@@ -1,2 +1,7 @@
 Integer     : System.Integer
 String      : System.String
+
+Wrapper
+------------
+user           : System.User
+key            : String

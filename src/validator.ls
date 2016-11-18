@@ -62,10 +62,15 @@ module.exports = (source)->
              lookup-discrimination-type scope, type
           else
            [type]
+
     validate-complex-type = (scope, type, obj)->
+      if type.type isnt \Complex and type.body.index-of(\.) > -1
+          parts = type.body.split(\.)
+          next-type = find-type parts.0, parts.1
+          return validate-complex-type parts.0, next-type, obj
       current-type = 
-          | type.type isnt \Complex => find-type scope, type.body
-          | _ => type
+          | type.type is \Complex => type
+          | _ => find-type scope, type.body
       return "{Type #{type.body} isnt complex}" if current-type.type isnt \Complex
       validate = (field)->
         result = validate-type scope, field.body, obj[field.name]

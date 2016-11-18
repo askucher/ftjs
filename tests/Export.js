@@ -17,8 +17,36 @@ describe('Export', function(){
     expect(validate("Export.Integer", 1)).to.equal(true);
     return expect(validate("Export.Integer", "1")).to.not.equal(true);
   });
-  return it('Export String Test', function(){
+  it('Export String Test', function(){
     expect(validate("Export.String", "1")).to.equal(true);
     return expect(validate("Export.String", 1)).to.not.equal(true);
+  });
+  return it('Wrapper Test', function(){
+    var user, wrapper, wrongWrapper;
+    user = {
+      _id: (function(){
+        _: return "Identity";
+      }()),
+      email: 'a.stegno@gmail.com',
+      picture: 'http://some',
+      firstname: 'Andrey',
+      lastname: 'Jobs',
+      status: 'active',
+      bio: 'Ho',
+      age: 19,
+      tags: ['user', 'tag2']
+    };
+    wrapper = {
+      user: user,
+      key: "Some String"
+    };
+    expect(validate('Export.Wrapper', wrapper)).to.equal(true);
+    wrongWrapper = {
+      user: {
+        wrong: "model"
+      },
+      key: "Some String"
+    };
+    return expect(validate('Export.Wrapper', wrongWrapper)).to.not.equal(true);
   });
 });

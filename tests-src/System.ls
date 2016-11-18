@@ -100,7 +100,7 @@ describe \System, (...)->
       status         : \active
       bio            : \Ho
       age            : 19
-      tags           : [\user]
+      tags           : [\user, \tag2]
     
     wrapper =
       user: user
