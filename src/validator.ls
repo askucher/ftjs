@@ -130,8 +130,12 @@ module.exports = (source)->
                result = validate-value scope, obj, type.basetype
                return result if result isnt yes 
                apply = (invoke)->
-                   return "BaseType doesn't have extensions" if not type.basetype.extensions?
-                   func = type.basetype.extensions.filter(-> it.name is invoke.name).0
+                   basetype =
+                       | type.basetype.type is \ExportType and not type.basetype.extensions? => find-type-by-pair(type.basetype.body).type
+                       | _ => type.basetype
+                   #console.log basetype.extensions
+                   return "BaseType doesn't have extensions" if not basetype.extensions?
+                   func = basetype.extensions.filter(-> it.name is invoke.name).0
                    if not func?
                      return "Function #{invoke.name} is not found"
                    applied-params = []
