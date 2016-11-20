@@ -40,6 +40,7 @@ describe('Export', function(){
       user: user,
       key: "Some String",
       password: "abcd",
+      password2: "abcd",
       tags: ["user"]
     };
     expect(validate('Export.Wrapper', wrapper)).to.equal(true);
@@ -49,6 +50,7 @@ describe('Export', function(){
       },
       key: "Some String",
       password: "abcd",
+      password2: "abcd",
       tags: ["user"]
     };
     expect(validate('Export.Wrapper', wrongWrapper)).to.not.equal(true);
@@ -56,6 +58,7 @@ describe('Export', function(){
       user: user,
       key: "Some String",
       password: "a",
+      password2: "abcd",
       tags: ["user"]
     };
     return expect(validate('Export.Wrapper', wrongWrapper2)).to.not.equal(true);

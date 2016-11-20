@@ -39,6 +39,7 @@ describe \Export, (...)->
       user: user
       key: "Some String"
       password: "abcd"
+      password2: "abcd" 
       tags: ["user"]
     expect(validate(\Export.Wrapper, wrapper)).to.equal(yes)
     
@@ -46,6 +47,7 @@ describe \Export, (...)->
       user: { wrong: "model"}
       key: "Some String"
       password: "abcd"
+      password2: "abcd" 
       tags: ["user"]
     expect(validate(\Export.Wrapper, wrong-wrapper)).to.not.equal(yes)
     
@@ -53,6 +55,7 @@ describe \Export, (...)->
       user: user
       key: "Some String"
       password: "a"
+      password2: "abcd" 
       tags: ["user"]
     expect(validate(\Export.Wrapper, wrong-wrapper2)).to.not.equal(yes)
   

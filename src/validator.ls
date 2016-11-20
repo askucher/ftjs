@@ -130,6 +130,7 @@ module.exports = (source)->
                result = validate-value scope, obj, type.basetype
                return result if result isnt yes 
                apply = (invoke)->
+                   return "BaseType doesn't have extensions" if not type.basetype.extensions?
                    func = type.basetype.extensions.filter(-> it.name is invoke.name).0
                    if not func?
                      return "Function #{invoke.name} is not found"
@@ -179,7 +180,6 @@ module.exports = (source)->
                          
                          return yes if items.length is items.filter(-> it is yes).length 
                          return items.filter(-> it is no).join("; ")
-               
                if type.body.index-of(\.) > -1
                  found = find-type-by-pair type.body
                  return process-array-type found.scope, found.type
